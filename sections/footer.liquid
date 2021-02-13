@@ -1,0 +1,93 @@
+<footer class="main-footer">
+
+	{% for block in section.blocks %}
+	<div class="main-footer__item">
+       {{block.settings.title}}
+
+	   {% case block.type %}
+		   	{% when 'link_list' %}
+            {{block.settings.title}}
+		 
+
+		   	{% when 'text' %}
+		      <h5 class="main-footer__title">	{{block.settings.title}}</h5>
+		    <p class="mainfooter__desc">	{{block.settings.text}}</p>
+
+		    {% when 'newsletter' %}
+		    {{block.settings.title}}
+		  
+
+	    {% else %}
+
+	   	
+	   {% endcase %}
+
+	</div>	
+	{% endfor %}
+
+
+</footer>
+
+
+
+{% schema %}
+
+{
+   "name":"footer",
+   "max_blocks":3,
+   "blocks":[
+      {
+         "type":"link_list",
+         "name":"menu",
+         "settings":[
+            {
+               "type":"text",
+               "id":"title",
+               "label":"Title",
+               "default":"short links"
+            },
+            {
+               "type":"link_list",
+               "id":"menu",
+               "label":"Menu",
+               "default":"footer"
+            }
+         ]
+      },
+      {
+         "type":"text",
+         "name":"text",
+         "settings":[
+            {
+               "type":"text",
+               "id":"title",
+               "label":"Title",
+               "default":"describe your shop"
+            },
+            {
+               "type":"richtext",
+               "id":"text",
+               "label":"Text",
+               "default":"<p>your text</p>"
+            }
+         ]
+      },
+      {
+         "type":"newsletter",
+         "name":"inscription",
+         "settings":[
+            {
+               "type":"text",
+               "id":"title",
+               "label":"Subscribe",
+               "default":"get daily news"
+            }
+          
+         ]
+      }
+
+      
+   ]
+}
+
+{% endschema %}

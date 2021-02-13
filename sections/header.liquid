@@ -1,0 +1,66 @@
+<div class="container">
+	<header class="header">
+	<nav class="header__nav">
+		<button class="nav-toggler">
+			<i class="fa fa-bars fa-2x"></i>
+		</button>
+		<ul class="nav" role="navigation">
+
+			{% for link in linklists.main-menu.links %}
+              <li class="nav-item">
+				<a href="{{ link.url }}" class="nav-link">{{link.title}}</a>
+			</li>
+
+				
+			{% endfor %}
+            
+		</ul>
+	</nav>
+	<div class="header__brand">
+		{% if section.settings.logo %}
+
+		<img src="{{section.settings.logo | img_url:'59x59' }}" alt="{{shop.name}}">
+
+		{% endif %}
+	</div>
+	<div class="header__left">
+		<i class="fa fa-search fa-2x" id="toggle-search"></i>
+	    <a href="/cart">
+	    	 <i class="fa fa-shopping-cart fa"></i>
+	    </a>
+	</div>
+
+	<div class="h-search-area">
+		<form action="/search" class="search-form">
+			<span class="close-search">X</span>
+			<input type="text" 
+			placeholder="Search products" 
+			class="h-search-input" 
+			name="q"
+			value="{{search.terms | escape}}">
+		</form>
+	</div>
+
+</header>
+</div>
+
+
+
+{% schema %}
+
+{
+	"name":"brand",
+	"class":"section_header",
+	"settings":[
+       {
+       	"type":"image_picker",
+       "id":"logo",
+       "label":"Logo"
+       }
+
+	]
+}
+
+
+
+{% endschema %}
